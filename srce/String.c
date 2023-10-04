@@ -23,7 +23,7 @@ static String* make(char* strg){
 }
 static int diff(String* a,String* b){
   if(a&&!b||!a&&b) return 1;
-  if(!a&&!b)       return 0;
+  if(a==b) return 0;
   if(a->leng!=b->leng) return 1;
   long i = 0;
   while(i<a->leng)
@@ -36,7 +36,7 @@ static char* gets(String* objc){
 }
 static long leng(String* objc){
   if(objc) return objc->leng;
-  return 0L;
+  return 0;
 }
 static String* sets(char* strg,String* objc){
   if(!objc&& strg) objc=make(strg);
@@ -74,6 +74,7 @@ static void show(String *objc){
 
 const struct CString CString = {
   .make = make,
+  .diff = diff,
   .show = show,
   .gets = gets,
   .leng = leng,
