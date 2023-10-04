@@ -38,18 +38,6 @@ static long leng(String* objc){
   if(objc) return objc->leng;
   return 0;
 }
-static String* sets(char* strg,String* objc){
-  if(!objc&& strg) objc=make(strg);
-  if(!objc&&!strg) objc=NULL;
-  if( objc&&!strg){
-    objc->strg=NULL;
-    objc->leng=0;
-  }
-  objc->strg=strg;
-  objc->leng=0;
-  while(objc->strg+objc->leng++);
-  return objc;
-}
 static String* glue(String* a,String* b){
   if(!a&&!b) return make(NULL);
   if(!a&& b) return make(b->strg);
@@ -78,6 +66,5 @@ const struct CString CString = {
   .show = show,
   .gets = gets,
   .leng = leng,
-  .sets = sets,
   .glue = glue,
 };

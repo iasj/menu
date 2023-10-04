@@ -7,7 +7,6 @@ struct TString{
   void (*diff)();
   void (*gets)();
   void (*leng)();
-  void (*sets)();
   void (*glue)();
   void (*show)();
   void (*test)();

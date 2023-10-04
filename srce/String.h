@@ -8,7 +8,6 @@ struct CString{
   void    (*show)(String *objc);
   char*   (*gets)(String *objc);
   long    (*leng)(String *objc);
-  String* (*sets)(char   *strg,String* objc);
   String* (*glue)(String *a,String *b);
 };
 extern const struct CString CString;

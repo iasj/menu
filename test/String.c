@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "String.h"
 
 char *hello = "hello";
@@ -32,10 +33,17 @@ static void diff(){
   assert( CString.diff(HELLO,HELLOWORLD)," diff: HELLO HELLOWORLD");
 }
 static void gets(){
+  char* s = CString.gets(HELLO);
+  assert(!strcmp(s,hello),"gets: hello");
+  s = NULL;
+  char* h = CString.gets(CString.make(NULL));
+  assert(s==h,"gets: NULL");
+  s = "";
+  h = CString.gets(EMPTY);
+  assert(!strcmp(s,h),"gets: empty");
+
 }
 static void leng(){
-}
-static void sets(){
 }
 static void glue(){
   String* g = CString.glue(HELLO,WORLD);
@@ -47,7 +55,6 @@ static void test(){
   diff();
   gets();
   leng();
-  sets();
   glue();
   show();
 }
@@ -57,7 +64,6 @@ const struct TString TString = {
   .diff = diff,
   .gets = gets,
   .leng = leng,
-  .sets = sets,
   .glue = glue,
   .show = show,
   .test = test,
