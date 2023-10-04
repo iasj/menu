@@ -3,8 +3,13 @@
 #include "../srce/String.h"
 struct TString{
   void (*make)();
+  void (*diff)();
+  void (*gets)();
+  void (*sets)();
+  void (*glue)();
+  void (*show)();
   void (*test)();
 };
-extern const struct TString *TString;
+extern const struct TString TString;
 #endif
 

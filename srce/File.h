@@ -7,5 +7,5 @@ typedef struct File File;
 struct CFile{
   File* (*make)();
 };
-extern const struct CFile *CFile;
+extern const struct CFile CFile;
 #endif

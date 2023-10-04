@@ -1,22 +1,47 @@
 #include <stdio.h>
+#include <assert.h>
 #include "String.h"
 
+char *hello = "hello";
+char *world = "world";
+char *helloworld = "helloworld";
+
+String *HELLO;
+String *WORLD;
+String *HELLOWORLD;
+
 static void make(){
-  char   *strg  = "hello";
-  String *hello = CString->make(strg);
-  printf("%d\n",strg==CString->gets(hello));
-  char *s = "byebye";
-  CString->sets(s,hello);
-  printf("%d\n",s==CString->gets(hello));
-  String *new = CString->sets(strg,NULL);
-  printf("%d\n",strg==CString->gets(new));
+  HELLO = CString.make(hello);
+  WORLD = CString.make(world);
+  HELLOWORLD = CString.make(helloworld);
+}
+static void diff(){
+}
+static void gets(){
+}
+static void sets(){
+}
+static void glue(){
+  String* g = CString.glue(HELLO,WORLD);
+  CString.show(g);
+}
+static void show(){
 }
 static void test(){
   make();
+  diff();
+  gets();
+  sets();
+  glue();
+  show();
 }
 
-const struct TString _TString = {
+const struct TString TString = {
   .make = make,
+  .diff = diff,
+  .gets = gets,
+  .sets = sets,
+  .glue = glue,
+  .show = show,
   .test = test,
 };
-const struct TString *TString = &_TString;

@@ -5,9 +5,7 @@
 #include "test/String.h"
 
 int main(const int argc,const char **argv){
-
-  TString->test();
-
+  TString.test();
   return 0;
 }
 

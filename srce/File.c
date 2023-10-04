@@ -13,7 +13,6 @@ static File* make(){
   return file;
 }
 
-const struct CFile _CFile = {
+const struct CFile CFile = {
   .make = make,
 };
-const struct CFile *CFile = &_CFile;

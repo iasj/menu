@@ -7,7 +7,8 @@ struct CString{
   void    (*show)(const String *objc);
   char*   (*gets)(const String *objc);
   void*   (*sets)(      char   *strg,String* objc);
+  String* (*glue)(const String *a,const String *b);
 };
-extern const struct CString *CString;
+extern const struct CString CString;
 #endif
 
