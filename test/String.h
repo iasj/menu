@@ -5,6 +5,7 @@ struct TString{
   void (*make)();
   void (*diff)();
   void (*gets)();
+  void (*leng)();
   void (*sets)();
   void (*glue)();
   void (*show)();

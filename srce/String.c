@@ -7,8 +7,8 @@ struct String{
   long  leng;
 };
 
-static String* make(const char *strg){
-  String *objc = malloc(sizeof(String));
+static String* make(char* strg){
+  String* objc = malloc(sizeof(String));
   objc->leng = 0;
   objc->strg = NULL;
   if(!strg) return objc;
@@ -21,7 +21,7 @@ static String* make(const char *strg){
   }while(strg[i]);
   return objc;
 }
-static int diff(const String *a,const String *b){
+static int diff(String* a,String* b){
   if(a&&!b||!a&&b) return 1;
   if(!a&&!b)       return 0;
   if(a->leng!=b->leng) return 1;
@@ -30,22 +30,31 @@ static int diff(const String *a,const String *b){
     if(a->strg[i]!=b->strg[i]) return 1;
   return 0;
 }
-static char* gets(const String *objc){
+static char* gets(String* objc){
   if(objc) return objc->strg;
-  puts("empty string object. Use CString->make()");
   return NULL;
 }
-static void* sets(char *strg,String *objc){
-  if(!objc) return objc=make(strg);
-  objc->leng = 0;
-  while(strg[objc->leng++]);
-  return objc->strg=strg;
+static long leng(String* objc){
+  if(objc) return objc->leng;
+  return 0L;
 }
-static String* glue(const String *a,const String *b){
-  if(!a&&!b) return NULL;
+static String* sets(char* strg,String* objc){
+  if(!objc&& strg) objc=make(strg);
+  if(!objc&&!strg) objc=NULL;
+  if( objc&&!strg){
+    objc->strg=NULL;
+    objc->leng=0;
+  }
+  objc->strg=strg;
+  objc->leng=0;
+  while(objc->strg+objc->leng++);
+  return objc;
+}
+static String* glue(String* a,String* b){
+  if(!a&&!b) return make(NULL);
   if(!a&& b) return make(b->strg);
   if( a&&!b) return make(a->strg);
-  if(!a->leng&&!b->leng) return make("");
+  if(!a->leng&&!b->leng) return make(NULL);
   if(!a->leng&& b->leng) return make(b->strg);
   if( a->leng&&!b->leng) return make(a->strg);
   String *g = malloc(sizeof(String));
@@ -59,7 +68,7 @@ static String* glue(const String *a,const String *b){
   walker=g->strg;
   return g;
 }
-static void show(const String *objc){
+static void show(String *objc){
   if(objc)printf("%ld'%s'\n",objc->leng,objc->strg);
 }
 
@@ -67,6 +76,7 @@ const struct CString CString = {
   .make = make,
   .show = show,
   .gets = gets,
+  .leng = leng,
   .sets = sets,
   .glue = glue,
 };

@@ -3,11 +3,12 @@
 
 typedef struct String String;
 struct CString{
-  String* (*make)(const char   *strg);
-  void    (*show)(const String *objc);
-  char*   (*gets)(const String *objc);
-  void*   (*sets)(      char   *strg,String* objc);
-  String* (*glue)(const String *a,const String *b);
+  String* (*make)(char   *strg);
+  void    (*show)(String *objc);
+  char*   (*gets)(String *objc);
+  long    (*leng)(String *objc);
+  String* (*sets)(char   *strg,String* objc);
+  String* (*glue)(String *a,String *b);
 };
 extern const struct CString CString;
 #endif

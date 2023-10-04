@@ -19,6 +19,8 @@ static void diff(){
 }
 static void gets(){
 }
+static void leng(){
+}
 static void sets(){
 }
 static void glue(){
@@ -31,6 +33,7 @@ static void test(){
   make();
   diff();
   gets();
+  leng();
   sets();
   glue();
   show();
@@ -40,6 +43,7 @@ const struct TString TString = {
   .make = make,
   .diff = diff,
   .gets = gets,
+  .leng = leng,
   .sets = sets,
   .glue = glue,
   .show = show,
